@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2020 2:06:20 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="library.model.Book" table="book" catalog="library" optimistic-lock="version">
+        <id name="bookid" type="string">
+            <column name="bookid" length="5" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bookCategory" class="library.model.BookCategory" fetch="select">
+            <column name="categoryid" length="5" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="30" />
+        </property>
+        <property name="publishingHouse" type="string">
+            <column name="publishing_house" length="20" />
+        </property>
+        <property name="dateOfPublication" type="date">
+            <column name="date_of_publication" length="10" />
+        </property>
+        <property name="author" type="string">
+            <column name="author" length="40" />
+        </property>
+        <property name="pages" type="java.lang.Integer">
+            <column name="pages" />
+        </property>
+        <set name="operationses" table="operations" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bookid" length="5" />
+            </key>
+            <one-to-many class="library.model.Operations" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2020 2:06:20 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="library.model.Operations" table="operations" catalog="library" optimistic-lock="version">
+        <id name="opId" type="string">
+            <column name="op_id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="book" class="library.model.Book" fetch="select">
+            <column name="bookid" length="5" />
+        </many-to-one>
+        <many-to-one name="client" class="library.model.Client" fetch="select">
+            <column name="regid" length="5" />
+        </many-to-one>
+        <property name="datetime" type="date">
+            <column name="DATETIME" length="10" />
+        </property>
+        <property name="operationCategory" type="string">
+            <column name="operation_category" length="30" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="60" />
+        </property>
+    </class>
+</hibernate-mapping>
